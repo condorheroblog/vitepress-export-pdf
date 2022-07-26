@@ -1,0 +1,90 @@
+{
+  "name": "vitepress-export-pdf",
+  "type": "module",
+  "version": "0.0.0",
+  "description": "VitePress export PDF",
+  "author": "CondorHero",
+  "license": "MIT",
+  "homepage": "https://github.com/condorheroblog/vitepress-export-pdf#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/condorheroblog/vitepress-export-pdf.git"
+  },
+  "bugs": {
+    "url": "https://github.com/condorheroblog/vitepress-export-pdf/issues"
+  },
+  "keywords": [
+    "vitepress-plugin-export-pdf",
+    "vitepress-export-pdf",
+    "vitepress-pdf",
+    "vitepress"
+  ],
+  "exports": {
+    ".": {
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.mjs"
+    }
+  },
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "press-export-pdf": "bin/press-export-pdf.mjs"
+  },
+  "files": [
+    "bin",
+    "dist"
+  ],
+  "engines": {
+    "node": ">=14"
+  },
+  "scripts": {
+    "prepare": "rm -rf .husky && husky install && husky add .husky/pre-commit 'npx lint-staged' && git add .husky/pre-commit",
+    "release": "bumpp package.json packages/*/package.json --commit --push --tag && pnpm -r publish",
+    "dev": "esno ./src/commands/press-export-pdf.ts export ./example/vitepress-docs",
+    "coverage": "vitest run --coverage",
+    "preinstall": "npx only-allow pnpm",
+    "lint:fix": "eslint . --fix",
+    "lint": "eslint .",
+    "test": "vitest",
+    "build": "unbuild"
+  },
+  "workspaces": [
+    "examples/*"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
+  "peerDependencies": {
+    "vitepress": ">=1.x"
+  },
+  "dependencies": {
+    "@vuepress/utils": "2.0.0-beta.24",
+    "bundle-require": "^3.0.4",
+    "cac": "^6.7.12",
+    "cli-progress": "^3.11.2",
+    "debug": "^4.3.4",
+    "envinfo": "^7.8.1",
+    "multimatch": "^6.0.0",
+    "pdfjs": "^2.4.7",
+    "puppeteer": "^15.5.0",
+    "semver": "^7.3.7"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config-ts": "^0.25.2",
+    "@types/cli-progress": "^3.11.0",
+    "@types/envinfo": "^7.8.1",
+    "@types/semver": "^7.3.10",
+    "bumpp": "^7.2.0",
+    "eslint": "^8.20.0",
+    "esno": "^0.16.3",
+    "fast-glob": "^3.2.11",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
+    "typescript": "^4.7.4",
+    "unbuild": "^0.7.6",
+    "vitepress": "^1.0.0-draft.8",
+    "vitest": "^0.14.2"
+  }
+}
