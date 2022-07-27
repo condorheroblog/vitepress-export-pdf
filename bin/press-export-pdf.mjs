@@ -1,3 +1,3 @@
 #!/usr/bin/env node
-"use strict";
-import "../dist/press-export-pdf.mjs";
+'use strict'
+import '../dist/press-export-pdf.mjs'
