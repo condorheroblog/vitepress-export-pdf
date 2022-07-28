@@ -2,6 +2,7 @@
   "name": "vitepress-export-pdf",
   "type": "module",
   "version": "0.0.0",
+  "packageManager": "pnpm@7.6.0",
   "description": "VitePress export PDF",
   "author": "CondorHero",
   "license": "MIT",
