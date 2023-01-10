@@ -53,7 +53,7 @@ export const serverApp = async (dir = 'docs', commandOptions: CommandOptions = {
     sorter,
     puppeteerLaunchOptions,
     pdfOptions,
-    outFile = vitepressOutFile,
+    outFile = vitepressOutFile.endsWith('.pdf') ? vitepressOutFile : `${vitepressOutFile}.pdf`,
     outDir = vitepressOutDir,
     routePatterns,
     enhanceApp,
