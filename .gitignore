@@ -5,6 +5,7 @@
 .vite_opt_cache
 .vscode
 dist
+cache
 node_modules
 pnpm-global
 demo

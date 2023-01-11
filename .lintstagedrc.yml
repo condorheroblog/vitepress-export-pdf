@@ -1,1 +1,1 @@
-"./**/*.{ts,md,html,json,js}": "nr lint:fix"
+"*.{ts,md,html,json,js}": "nr lint:fix"
