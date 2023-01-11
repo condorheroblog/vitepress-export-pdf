@@ -9,11 +9,8 @@ export default defineConfig({
   lastUpdated: true,
   appearance: true,
 
-  vite: {
-    preview: {
-      port: 15721,
-    },
-  },
+  // https://vitepress.vuejs.org/config/app-configs#base
+  // base: '/subpath/',
 
   themeConfig: {
     nav: nav(),

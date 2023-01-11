@@ -76,8 +76,9 @@ export const serverApp = async (dir = 'docs', commandOptions: CommandOptions = {
   try {
     await generatePdf({
       root: devApp.config.root,
-      port: servePort,
       host: serveHost,
+      port: servePort,
+      base: devServer.config.base,
       outFile,
       outDir,
       sorter,

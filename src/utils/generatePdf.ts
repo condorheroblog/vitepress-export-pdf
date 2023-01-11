@@ -12,8 +12,9 @@ import { mergePDF } from './mergePDF'
 
 interface IGeneratePdfOptions {
   root: string
-  port: number
   host: string
+  port: number
+  base: string
   outFile: string
   outDir: string
   routePatterns: string[]
@@ -32,8 +33,9 @@ const { join } = path
  */
 export const generatePdf = async ({
   root,
-  port,
   host,
+  port,
+  base,
   sorter,
   outFile,
   outDir,
@@ -59,7 +61,7 @@ export const generatePdf = async ({
   const normalizePages = exportPages.map((page) => {
     return {
       url: page.path,
-      location: `http://${host}:${port}${page.path}`,
+      location: `http://${host}:${port}${base.substring(0, base.length - 1)}${page.path}`,
       pagePath: `${tempPdfDir}/${page.key}.pdf`,
     }
   })
