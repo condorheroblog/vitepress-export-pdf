@@ -40,7 +40,8 @@
     "node": ">=14.6.0"
   },
   "scripts": {
-    "release": "bumpp package.json packages/*/package.json --commit --push --tag && pnpm -r publish",
+    "release": "bumpp -r && pnpm -r publish",
+    "prepublishOnly": "nr build",
     "dev": "esno ./src/commands/press-export-pdf.ts export ./example/vitepress-docs",
     "coverage": "vitest run --coverage",
     "lint:fix": "eslint . --fix",
@@ -59,37 +60,37 @@
     "vitepress": ">=1.0.0-alpha.35 <=1.x"
   },
   "dependencies": {
-    "bundle-require": "^3.0.4",
-    "cac": "^6.7.12",
-    "cli-progress": "^3.11.2",
+    "bundle-require": "^4.0.1",
+    "cac": "^6.7.14",
+    "cli-progress": "^3.12.0",
     "debug": "^4.3.4",
     "envinfo": "^7.8.1",
-    "fs-extra": "^10.1.0",
+    "fs-extra": "^11.1.1",
     "hash-sum": "^2.0.0",
     "multimatch": "^6.0.0",
-    "ora": "^6.1.2",
+    "ora": "^6.3.0",
     "pdfjs": "^2.4.7",
     "picocolors": "^1.0.0",
-    "puppeteer": "^15.5.0",
-    "semver": "^7.3.7"
+    "puppeteer": "^20.1.0",
+    "semver": "^7.5.0"
   },
   "devDependencies": {
-    "@antfu/eslint-config-ts": "^0.25.2",
+    "@antfu/eslint-config-ts": "^0.38.5",
     "@types/cli-progress": "^3.11.0",
     "@types/debug": "^4.1.7",
     "@types/envinfo": "^7.8.1",
-    "@types/fs-extra": "^9.0.13",
+    "@types/fs-extra": "^11.0.1",
     "@types/hash-sum": "^1.0.0",
-    "@types/semver": "^7.3.10",
-    "bumpp": "^8.2.1",
-    "eslint": "^8.20.0",
+    "@types/semver": "^7.3.13",
+    "bumpp": "^9.1.0",
+    "eslint": "^8.39.0",
     "esno": "^0.16.3",
-    "fast-glob": "^3.2.11",
-    "husky": "^8.0.1",
-    "lint-staged": "^13.0.3",
-    "typescript": "^4.7.4",
-    "unbuild": "^0.7.6",
-    "vitepress": "^1.0.0-alpha.35",
-    "vitest": "^0.19.1"
+    "fast-glob": "^3.2.12",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.2",
+    "typescript": "^5.0.4",
+    "unbuild": "^1.2.1",
+    "vitepress": "^1.0.0-alpha.75",
+    "vitest": "^0.31.0"
   }
 }
