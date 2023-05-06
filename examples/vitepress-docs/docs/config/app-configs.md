@@ -4,12 +4,12 @@ App configs are where you can define the global settings of the site. App config
 
 ```ts
 export default {
-  // These are app level configs.
-  lang: 'en-US',
-  title: 'VitePress',
-  description: 'Vite & Vue powered static site generator.',
-  // ...
-}
+	// These are app level configs.
+	lang: "en-US",
+	title: "VitePress",
+	description: "Vite & Vue powered static site generator.",
+	// ...
+};
 ```
 
 ## appearance
@@ -23,8 +23,8 @@ It also injects inline script that tries to read users settings from local stora
 
 ```ts
 export default {
-  appearance: true
-}
+	appearance: true
+};
 ```
 
 ## base
@@ -38,8 +38,8 @@ The base is automatically prepended to all the URLs that start with / in other o
 
 ```ts
 export default {
-  base: '/base/'
-}
+	base: "/base/"
+};
 ```
 
 ## description
@@ -51,8 +51,8 @@ Description for the site. This will render as a `<meta>` tag in the page HTML.
 
 ```ts
 export default {
-  description: 'A VitePress site'
-}
+	description: "A VitePress site"
+};
 ```
 
 ## head
@@ -64,17 +64,17 @@ Additional elements to render in the `<head>` tag in the page HTML. The user-add
 
 ```ts
 export default {
-  head: [
-    ['link', { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' }]
-    // would render: <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  ]
-}
+	head: [
+		["link", { rel: "preconnect", href: "https://fonts.gstatic.com", crossorigin: "" }]
+		// would render: <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	]
+};
 ```
 
 ```ts
 type HeadConfig =
   | [string, Record<string, string>]
-  | [string, Record<string, string>, string]
+  | [string, Record<string, string>, string];
 ```
 
 ## ignoreDeadLinks
@@ -86,8 +86,8 @@ When set to `true`, VitePress will not fail builds due to dead links.
 
 ```ts
 export default {
-  ignoreDeadLinks: true
-}
+	ignoreDeadLinks: true
+};
 ```
 
 ## lang
@@ -99,8 +99,8 @@ The lang attribute for the site. This will render as a `<html lang="en-US">` tag
 
 ```ts
 export default {
-  lang: 'en-US'
-}
+	lang: "en-US"
+};
 ```
 
 ## lastUpdated
@@ -112,8 +112,8 @@ Use git commit to get the timestamp. This option enables the default theme to di
 
 ```ts
 export default {
-  lastUpdated: true
-}
+	lastUpdated: true
+};
 ```
 
 ## markdown
@@ -124,11 +124,11 @@ Configre Markdown parser options. VitePress uses [Markdown-it](https://github.co
 
 ```js
 export default {
-  markdown: {
-    theme: 'material-palenight',
-    lineNumbers: true
-  }
-}
+	markdown: {
+		theme: "material-palenight",
+		lineNumbers: true
+	}
+};
 ```
 
 Below are all the options that you can have in this object:
@@ -150,7 +150,7 @@ interface MarkdownOptions extends MarkdownIt.Options {
   // markdown-it-anchor plugin options.
   // See: https://github.com/valeriangalliat/markdown-it-anchor
   anchor?: {
-    permalink?: anchor.AnchorOptions['permalink']
+    permalink?: anchor.AnchorOptions["permalink"]
   }
 
   // markdown-it-attrs plugin options.
@@ -180,8 +180,8 @@ Title for the site. This will be displayed in the nav bar. Also used as the suff
 
 ```ts
 export default {
-  title: 'VitePress'
-}
+	title: "VitePress"
+};
 ```
 
 ## titleTemplate
@@ -194,7 +194,7 @@ Set `false` to disable the feature. If the option is `undefined`, then the value
 
 ```ts
 export default {
-  title: 'VitePress',
-  titleTemplate: 'Vite & Vue powered static site generator'
-}
+	title: "VitePress",
+	titleTemplate: "Vite & Vue powered static site generator"
+};
 ```

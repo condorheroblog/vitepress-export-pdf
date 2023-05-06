@@ -1,9 +1,9 @@
-import DefaultTheme from 'vitepress/theme'
+import DefaultTheme from "vitepress/theme";
 
 // custom CSS
-import './style/print.css'
+import "./style/print.css";
 
 export default {
-  // Extending the Default Theme
-  ...DefaultTheme,
-}
+	// Extending the Default Theme
+	...DefaultTheme,
+};

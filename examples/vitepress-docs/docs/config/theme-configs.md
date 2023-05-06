@@ -4,21 +4,21 @@ Theme configs let you customize your theme. You can define theme configs by addi
 
 ```ts
 export default {
-  lang: 'en-US',
-  title: 'VitePress',
-  description: 'Vite & Vue powered static site generator.',
+	lang: "en-US",
+	title: "VitePress",
+	description: "Vite & Vue powered static site generator.",
 
-  // Theme related configurations.
-  themeConfig: {
-    logo: '/logo.svg',
-    nav: [
-      // ...
-    ],
-    sidebar: {
-      // ...
-    }
-  }
-}
+	// Theme related configurations.
+	themeConfig: {
+		logo: "/logo.svg",
+		nav: [
+			// ...
+		],
+		sidebar: {
+			// ...
+		}
+	}
+};
 ```
 
 Here it describes the settings for the VitePress default theme. If you're using a custom theme created by others, these settings may not have any effect, or might behave differently.
@@ -31,10 +31,10 @@ Logo file to display in nav bar, right before the site title.
 
 ```ts
 export default {
-  themeConfig: {
-    logo: '/logo.svg'
-  }
-}
+	themeConfig: {
+		logo: "/logo.svg"
+	}
+};
 ```
 
 ## siteTitle
@@ -45,10 +45,10 @@ You can customize this item to replace the default site title (`title` in app co
 
 ```ts
 export default {
-  themeConfig: {
-    siteTitle: 'Hello World'
-  }
-}
+	themeConfig: {
+		siteTitle: "Hello World"
+	}
+};
 ```
 
 ## nav
@@ -59,24 +59,24 @@ The configuration for the nav menu item. You may learn more details at [Theme: N
 
 ```js
 export default {
-  themeConfig: {
-    nav: [
-      { text: 'Guide', link: '/guide' },
-      {
-        text: 'Dropdown Menu',
-        items: [
-          { text: 'Item A', link: '/item-1' },
-          { text: 'Item B', link: '/item-2' },
-          { text: 'Item C', link: '/item-3' }
-        ]
-      }
-    ]
-  }
-}
+	themeConfig: {
+		nav: [
+			{ text: "Guide", link: "/guide" },
+			{
+				text: "Dropdown Menu",
+				items: [
+					{ text: "Item A", link: "/item-1" },
+					{ text: "Item B", link: "/item-2" },
+					{ text: "Item C", link: "/item-3" }
+				]
+			}
+		]
+	}
+};
 ```
 
 ```ts
-type NavItem = NavItemWithLink | NavItemWithChildren
+type NavItem = NavItemWithLink | NavItemWithChildren;
 
 interface NavItemWithLink {
   text: string
@@ -99,23 +99,23 @@ The configuration for the sidebar menu item. You may learn more details at [Them
 
 ```js
 export default {
-  themeConfig: {
-    sidebar: [
-      {
-        text: 'Guide',
-        items: [
-          { text: 'Introduction', link: '/introduction' },
-          { text: 'Getting Started', link: '/getting-started' },
-          // ...
-        ]
-      }
-    ]
-  }
-}
+	themeConfig: {
+		sidebar: [
+			{
+				text: "Guide",
+				items: [
+					{ text: "Introduction", link: "/introduction" },
+					{ text: "Getting Started", link: "/getting-started" },
+					// ...
+				]
+			}
+		]
+	}
+};
 ```
 
 ```ts
-type Sidebar = SidebarGroup[] | SidebarMulti
+type Sidebar = SidebarGroup[] | SidebarMulti;
 
 interface SidebarMulti {
   [path: string]: SidebarGroup[]
@@ -143,10 +143,10 @@ Can be used to customize the title of the right sidebar (on the top of outline l
 
 ```js
 export default {
-  themeConfig: {
-    outlineTitle: 'In hac pagina'
-  }
-}
+	themeConfig: {
+		outlineTitle: "In hac pagina"
+	}
+};
 ```
 
 ## socialLinks
@@ -157,20 +157,20 @@ You may define this option to show your social account links with icons in nav.
 
 ```js
 export default {
-  themeConfig: {
-    socialLinks: [
-      { icon: 'github', link: 'https://github.com/vuejs/vitepress' },
-      { icon: 'twitter', link: '...' },
-      // You can also add custom icons by passing SVG as string:
-      {
-        icon: {
-          svg: '<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Dribbble</title><path d="M12...6.38z"/></svg>'
-        },
-        link: '...'
-      }
-    ]
-  }
-}
+	themeConfig: {
+		socialLinks: [
+			{ icon: "github", link: "https://github.com/vuejs/vitepress" },
+			{ icon: "twitter", link: "..." },
+			// You can also add custom icons by passing SVG as string:
+			{
+				icon: {
+					svg: "<svg role=\"img\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><title>Dribbble</title><path d=\"M12...6.38z\"/></svg>"
+				},
+				link: "..."
+			}
+		]
+	}
+};
 ```
 
 ```ts
@@ -180,15 +180,15 @@ interface SocialLink {
 }
 
 type SocialLinkIcon =
-  | 'discord'
-  | 'facebook'
-  | 'github'
-  | 'instagram'
-  | 'linkedin'
-  | 'slack'
-  | 'twitter'
-  | 'youtube'
-  | { svg: string }
+  | "discord"
+  | "facebook"
+  | "github"
+  | "instagram"
+  | "linkedin"
+  | "slack"
+  | "twitter"
+  | "youtube"
+  | { svg: string };
 ```
 
 ## footer
@@ -199,13 +199,13 @@ Footer configuration. You can add a message and copyright. The footer will displ
 
 ```ts
 export default {
-  themeConfig: {
-    footer: {
-      message: 'Released under the MIT License.',
-      copyright: 'Copyright © 2019-present Evan You'
-    }
-  }
-}
+	themeConfig: {
+		footer: {
+			message: "Released under the MIT License.",
+			copyright: "Copyright © 2019-present Evan You"
+		}
+	}
+};
 ```
 
 ```ts
@@ -223,13 +223,13 @@ Edit Link lets you display a link to edit the page on Git management services su
 
 ```js
 export default {
-  themeConfig: {
-    editLink: {
-      pattern: 'https://github.com/vuejs/vitepress/edit/main/docs/:path',
-      text: 'Edit this page on GitHub'
-    }
-  }
-}
+	themeConfig: {
+		editLink: {
+			pattern: "https://github.com/vuejs/vitepress/edit/main/docs/:path",
+			text: "Edit this page on GitHub"
+		}
+	}
+};
 ```
 
 ```ts
@@ -248,10 +248,10 @@ The prefix text showing right before the last updated time.
 
 ```ts
 export default {
-  themeConfig: {
-    lastUpdatedText: 'Updated Date'
-  }
-}
+	themeConfig: {
+		lastUpdatedText: "Updated Date"
+	}
+};
 ```
 
 ## carbonAds
@@ -262,13 +262,13 @@ A option to display [Carbon Ads](https://www.carbonads.net/).
 
 ```ts
 export default {
-  themeConfig: {
-    carbonAds: {
-      code: 'your-carbon-code',
-      placement: 'your-carbon-placement'
-    }
-  }
-}
+	themeConfig: {
+		carbonAds: {
+			code: "your-carbon-code",
+			placement: "your-carbon-placement"
+		}
+	}
+};
 ```
 
 ```ts
@@ -288,13 +288,13 @@ Can be used to customize text appearing above previous and next links. Helpful i
 
 ```js
 export default {
-  themeConfig: {
-    docFooter: {
-      prev: 'Pagina prior',
-      next: 'Proxima pagina'
-    }
-  }
-}
+	themeConfig: {
+		docFooter: {
+			prev: "Pagina prior",
+			next: "Proxima pagina"
+		}
+	}
+};
 ```
 
 ```ts

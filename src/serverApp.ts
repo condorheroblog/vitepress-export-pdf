@@ -1,98 +1,105 @@
-import path from 'node:path'
-import { createServer as createDevApp } from 'vitepress'
-import debug from 'debug'
-import pkg from '../package.json'
-import type { UserConfig } from './configs'
+import { join } from "node:path";
+import { createRequire } from "node:module";
+import { createServer as createDevApp, resolveConfig } from "vitepress";
+import debug from "debug";
+import hash from "hash-sum";
+import type { CommandOptions } from "@condorhero/vuepress-plugin-export-pdf-core";
+import { checkEnv, generatePdf, loadModule, resolveUserConfigConventionalPath, resolveUserConfigPath, timeTransformer } from "@condorhero/vuepress-plugin-export-pdf-core";
+import { engines, peerDependencies } from "../package.json";
+import type { UserConfig } from ".";
 
-import { checkEnv, generatePdf, logger, timeTransformer } from './utils'
-import { loadModule, resolveUserConfigConventionalPath, resolveUserConfigPath } from './configs'
+const devDebug = debug("vitepress-export-pdf:dev-server");
 
-const { join } = path
+// export const PORT = 16762;
+export const PORT = 8080;
+export const HOST = "localhost";
 
-interface CommandOptions {
-  config?: string
-  outDir?: string
-  outFile?: string
-  debug?: boolean
-}
+export const moduleRequire = createRequire(import.meta.url);
+const { version } = moduleRequire("vitepress/package.json");
 
-const devDebug = debug('vitepress-export-pdf:dev-server')
+export async function serverApp(dir = "docs", commandOptions: CommandOptions = {}) {
+	checkEnv("VitePress", engines.node, version, peerDependencies.vitepress);
 
-export const serverApp = async (dir = 'docs', commandOptions: CommandOptions = {}) => {
-  checkEnv(pkg.engines.node)
+	const sourceDir = join(process.cwd(), dir);
 
-  const sourceDir = join(process.cwd(), dir)
+	if (commandOptions.debug)
+		debug.enabled("vitepress-export-pdf:*");
 
-  if (commandOptions.debug)
-    debug.enabled('vitepress-export-pdf:*')
+	devDebug("sourceDir: %s", sourceDir);
 
-  devDebug('sourceDir: %s', sourceDir)
+	let userConfig: UserConfig = {};
 
-  let userConfig: UserConfig = {}
+	// resolve user config file
+	const userConfigPath = commandOptions.config
+		? resolveUserConfigPath(commandOptions.config)
+		: resolveUserConfigConventionalPath(sourceDir, "vitepress");
 
-  // resolve user config file
-  const userConfigPath = commandOptions.config
-    ? resolveUserConfigPath(commandOptions.config)
-    : resolveUserConfigConventionalPath(sourceDir)
+	// get user config data
+	if (userConfigPath)
+		userConfig = await loadModule<UserConfig>(userConfigPath);
 
-  if (userConfigPath)
-    userConfig = await loadModule(userConfigPath)
+	// set default routePatterns
+	if (Array.isArray(userConfig.routePatterns))
+		userConfig.routePatterns = ["/**", "!/404.html", ...userConfig.routePatterns];
+	else
+		userConfig.routePatterns = ["/**", "!/404.html"];
 
-  // set default routePatterns
-  if (Array.isArray(userConfig.routePatterns))
-    userConfig.routePatterns = ['/**', '!/404.html', ...userConfig.routePatterns]
-  else
-    userConfig.routePatterns = ['/**', '!/404.html']
+	const vitepressOutFile = commandOptions.outFile ?? `vitepress-${timeTransformer()}.pdf`;
+	const vitepressOutDir = commandOptions.outDir ?? ".";
 
-  const vitepressOutFile = commandOptions.outFile ?? `vitepress-${timeTransformer()}.pdf`
-  const vitepressOutDir = commandOptions.outDir ?? '.'
+	devDebug("userConfig: %O", userConfig);
 
-  devDebug('userConfig: %O', userConfig)
+	const {
+		sorter,
+		puppeteerLaunchOptions,
+		pdfOptions,
+		routePatterns,
+		outFile = vitepressOutFile,
+		outDir = vitepressOutDir,
+		urlOrigin = commandOptions.urlOrigin,
+		pdfOutlines = commandOptions.pdfOutlines,
+		outlineContainerSelector = ".VPContent",
+	} = userConfig;
 
-  const {
-    sorter,
-    puppeteerLaunchOptions,
-    pdfOptions,
-    outFile = vitepressOutFile.endsWith('.pdf') ? vitepressOutFile : `${vitepressOutFile}.pdf`,
-    outDir = vitepressOutDir,
-    routePatterns,
-    enhanceApp,
-  } = userConfig
+	const devServer = await createDevApp(sourceDir, { port: PORT, host: HOST });
 
-  // TODO: ServerOptions
-  const devServer = await createDevApp(sourceDir, {})
+	const { port = PORT, host = HOST } = devServer.config.server;
+	const devApp = await devServer.listen(port);
+	devApp.printUrls();
 
-  const port = Number(devServer.config.preview.host)
-  const servePort = Number.isFinite(port) ? port : 16762
-  const host = devServer.config.preview.host
-  const serveHost = typeof host === 'string' ? host : 'localhost'
+	process.stdout.write("\n");
+	process.stdout.write("Start to generate current site to PDF ...");
 
-  const devApp = await devServer.listen(servePort)
-  devApp.printUrls()
+	const { pages, tempDir, cleanUrls } = await resolveConfig(devApp.config.root);
 
-  logger.log('\n')
-  logger.tip('Start to generate current site to PDF ...\n')
+	const haveCleanUrls = cleanUrls ? "" : ".html";
+	const hashPages = pages.map(page => ({
+		path: `${devServer.config.base}${page.replace(/\.md$/, haveCleanUrls)}`,
+		key: `v-${hash(page)}`,
+	}));
 
-  try {
-    await generatePdf({
-      root: devApp.config.root,
-      host: serveHost,
-      port: servePort,
-      base: devServer.config.base,
-      outFile,
-      outDir,
-      sorter,
-      puppeteerLaunchOptions,
-      pdfOptions,
-      routePatterns,
-      enhanceApp,
-    })
-  }
-  catch (error) {
-    logger.error(error)
-  }
+	try {
+		await generatePdf({
+			pages: hashPages,
+			tempDir,
+			host: typeof host === "boolean" ? HOST : host,
+			port,
+			outFile,
+			outDir,
+			sorter,
+			urlOrigin,
+			pdfOptions,
+			pdfOutlines,
+			routePatterns,
+			puppeteerLaunchOptions,
+			outlineContainerSelector,
+		});
+	}
+	catch (error) {
+		console.error(error);
+	}
 
-  // close current dev server
-  await devApp.close()
-  process.exit(0)
+	// close current dev server
+	await devApp.close();
+	process.exit(0);
 }

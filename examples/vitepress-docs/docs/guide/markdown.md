@@ -179,7 +179,7 @@ Danger zone, do not proceed
 
 ::: details Click me to view the code
 ```js
-console.log('Hello, VitePress!')
+console.log("Hello, VitePress!");
 ```
 :::
 ````
@@ -192,7 +192,7 @@ Danger zone, do not proceed
 
 ::: details Click me to view the code
 ```js
-console.log('Hello, VitePress!')
+console.log("Hello, VitePress!");
 ```
 :::
 
@@ -225,9 +225,9 @@ export default {
 
 ```js
 export default {
-  name: 'MyComponent'
-  // ...
-}
+	name: "MyComponent"
+	// ...
+};
 ```
 
 ```html
@@ -316,10 +316,10 @@ You can enable line numbers for each code blocks via config:
 
 ```js
 export default {
-  markdown: {
-    lineNumbers: true
-  }
-}
+	markdown: {
+		lineNumbers: true
+	}
+};
 ```
 
 Please see [`markdown` options](../config/app-configs#markdown) for more details.
@@ -429,25 +429,25 @@ Note that this does not throw errors if your file is not present. Hence, when us
 VitePress uses [markdown-it](https://github.com/markdown-it/markdown-it) as the Markdown renderer. A lot of the extensions above are implemented via custom plugins. You can further customize the `markdown-it` instance using the `markdown` option in `.vitepress/config.js`:
 
 ```js
-const anchor = require('markdown-it-anchor')
+const anchor = require("markdown-it-anchor");
 
 module.exports = {
-  markdown: {
-    // options for markdown-it-anchor
-    // https://github.com/valeriangalliat/markdown-it-anchor#permalinks
-    anchor: {
-      permalink: anchor.permalink.headerLink()
-    },
+	markdown: {
+		// options for markdown-it-anchor
+		// https://github.com/valeriangalliat/markdown-it-anchor#permalinks
+		anchor: {
+			permalink: anchor.permalink.headerLink()
+		},
 
-    // options for markdown-it-toc-done-right
-    toc: { level: [1, 2] },
+		// options for markdown-it-toc-done-right
+		toc: { level: [1, 2] },
 
-    config: (md) => {
-      // use more markdown-it plugins!
-      md.use(require('markdown-it-xxx'))
-    }
-  }
-}
+		config: (md) => {
+			// use more markdown-it plugins!
+			md.use(require("markdown-it-xxx"));
+		}
+	}
+};
 ```
 
 See full list of configurable properties in [Configs: App Configs](../config/app-configs#markdown).

@@ -54,9 +54,9 @@ const { page } = useData()
 
 ```json
 {
-  "path": "/using-vue.html",
-  "title": "Using Vue in Markdown",
-  "frontmatter": {}
+	"path": "/using-vue.html",
+	"title": "Using Vue in Markdown",
+	"frontmatter": {}
 }
 ```
 
@@ -109,14 +109,14 @@ If the components are going to be used across several pages in the docs, they ca
 In `.vitepress/theme/index.js`, the `enhanceApp` function receives the Vue `app` instance so you can [register components](https://vuejs.org/guide/components/registration.html) as you would do in a regular Vue application.
 
 ```js
-import DefaultTheme from 'vitepress/theme'
+import DefaultTheme from "vitepress/theme";
 
 export default {
-  ...DefaultTheme,
-  enhanceApp({ app }) {
-    app.component('VueClickAwayExample', VueClickAwayExample)
-  }
-}
+	...DefaultTheme,
+	enhanceApp({ app }) {
+		app.component("VueClickAwayExample", VueClickAwayExample);
+	}
+};
 ```
 
 Later in your markdown files, the component can be interleaved between the content

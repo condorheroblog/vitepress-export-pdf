@@ -1,20 +1,21 @@
 {
-  "name": "vitepress-docs",
-  "type": "module",
-  "private": true,
-  "scripts": {
-    "docs:dev": "vitepress dev docs",
-    "docs:build": "vitepress build docs",
-    "help": "press-export-pdf --help",
-    "version": "press-export-pdf --version",
-    "systemInfo": "press-export-pdf info",
-    "docs:outFile": "press-export-pdf export docs --outFile docs.pdf",
-    "docs:outDir": "press-export-pdf export docs --outDir /tmp/outDir",
-    "docs:debug": "press-export-pdf export docs --debug",
-    "docs:export": "press-export-pdf export docs"
-  },
-  "devDependencies": {
-    "vitepress": "^1.0.0-alpha.75",
-    "vitepress-export-pdf": "workspace:^"
-  }
+	"name": "vitepress-docs",
+	"type": "module",
+	"private": true,
+	"scripts": {
+		"docs:dev": "vitepress dev docs",
+		"docs:build": "vitepress build docs",
+		"cli:help": "press-export-pdf --help",
+		"version": "press-export-pdf --version",
+		"systemInfo": "press-export-pdf info",
+		"export:help": "press-export-pdf export --help",
+		"docs:outFile": "press-export-pdf export docs --outFile docs.pdf",
+		"docs:outDir": "press-export-pdf export docs --outDir /tmp/outDir",
+		"docs:debug": "press-export-pdf export docs --debug",
+		"docs:export": "press-export-pdf export docs"
+	},
+	"devDependencies": {
+		"vitepress": "^1.0.0-alpha.75",
+		"vitepress-export-pdf": "workspace:^"
+	}
 }

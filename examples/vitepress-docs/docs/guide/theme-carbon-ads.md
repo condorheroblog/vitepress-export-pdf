@@ -4,19 +4,19 @@ VitePress has built in native support for [Carbon Ads](https://www.carbonads.net
 
 ```js
 export default {
-  themeConfig: {
-    carbonAds: {
-      code: 'your-carbon-code',
-      placement: 'your-carbon-placement'
-    }
-  }
-}
+	themeConfig: {
+		carbonAds: {
+			code: "your-carbon-code",
+			placement: "your-carbon-placement"
+		}
+	}
+};
 ```
 
 These values are used to call carbon CDN script as shown below.
 
 ```js
-`//cdn.carbonads.com/carbon.js?serve=${code}&placement=${placement}`
+`//cdn.carbonads.com/carbon.js?serve=${code}&placement=${placement}`;
 ```
 
 To learn more about Carbon Ads configuration, please visit [Carbon Ads website](https://www.carbonads.net/).

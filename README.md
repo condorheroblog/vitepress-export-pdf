@@ -1,6 +1,6 @@
 # vitepress-export-pdf
 
-<p align="center">
+<p align="left">
     <a href="https://www.npmjs.com/package/vitepress-export-pdf" target="__blank">
         <img src="https://img.shields.io/npm/v/vitepress-export-pdf.svg?color=a1b858" alt="NPM version">
     </a>
@@ -16,7 +16,7 @@
 
 ## Related
 
-- [@condorhero/vuepress-plugin-export-pdf](https://github.com/condorheroblog/vuepress-plugin-export-pdf/blob/main/packages/vuepress-plugin-export-pdf-v1/README.md)
+- [@condorhero/vuepress-plugin-export-pdf-v1](https://github.com/condorheroblog/vuepress-plugin-export-pdf/blob/main/packages/vuepress-plugin-export-pdf-v1/README.md)
 - [@condorhero/vuepress-plugin-export-pdf-v2](https://github.com/condorheroblog/vuepress-plugin-export-pdf/blob/main/packages/vuepress-plugin-export-pdf-v2/README.md)
 
 ## Installation
@@ -29,9 +29,9 @@ then add script to your `package.json`:
 
 ```json
 {
-  "scripts": {
-    "export-pdf": "press-export-pdf export [path/to/your/docs]"
-  }
+	"scripts": {
+		"export-pdf": "press-export-pdf export [path/to/your/docs]"
+	}
 }
 ```
 
@@ -41,22 +41,28 @@ Then run:
 npm run export-pdf
 ```
 
-## Usage
+## Demo
+
+A usable example of quick start [click here](./examples/vitepress-docs/).
+
+## `press-export-pdf` Command Options
 
 The package provides the `press-export-pdf` command with the following command line options:
 
-![vitepress-export-pdf.png](./assets/vitepress-export-pdf.png)
+![vitepress-export-pdf.png](./assets/vitepress-export-pdf.svg)
 
 - `export [sourceDir]`: Export your site to a PDF file
   - `-c, --config <config>`: Set path to config file
   - `--outFile <outFile>`: Name of output file
   - `--outDir <outDir>`: Directory of output files
+  - `--pdfOutlines <pdfOutlines>`: Keep PDF outlines/bookmarks
+  - `--urlOrigin <urlOrigin>`: Change the origin of the print url
   - `--debug`: Enable debug mode
 - `info`: Display environment information
 - `--help`: Display help information
 - `--version`: Display version information
 
-## Config options
+## Config File Options
 
 You can create a new config file, we support the following files:
 
@@ -77,11 +83,11 @@ ex:
 
 ```ts
 // .vitepress/vitepress-pdf.config.ts
-import { defineUserConfig } from 'vitepress-export-pdf'
+import { defineUserConfig } from "vitepress-export-pdf";
 
 export default defineUserConfig({
-  // ...
-})
+	// ...
+});
 ```
 
 if you want to use JS files, **you can leverage your IDE's intellisense with jsdoc type hints**:
@@ -91,10 +97,10 @@ if you want to use JS files, **you can leverage your IDE's intellisense with jsd
  * @type {import('vitepress-export-pdf').UserConfig}
  */
 const config = {
-  // ...
-}
+	// ...
+};
 
-export default config
+export default config;
 ```
 
 config options:
@@ -105,7 +111,9 @@ config options:
 - `routePatterns` - Specify the patterns of files you want to be exported. The patterns are relative to the source directory (default `["/**", "!/404.html"]`).Patterns to match Route path using [multimatch](https://github.com/sindresorhus/multimatch)
 - `puppeteerLaunchOptions` - [Puppeteer launch options object](https://github.com/puppeteer/puppeteer/blob/main/docs/api/puppeteer.puppeteerlaunchoptions.md)
 - `pdfOptions` - [Valid options to configure PDF generation via Page.pdf()](https://github.com/puppeteer/puppeteer/blob/main/docs/api/puppeteer.pdfoptions.md) (default `{ format: 'A4 }`)
-- `enhanceApp` - Enhanceapp is a function that is executed before generating PDF. It receives two parameters: the created [browser](https://github.com/puppeteer/puppeteer/blob/main/docs/api/puppeteer.browser.md) instance and the [page](https://github.com/puppeteer/puppeteer/blob/main/docs/api/puppeteer.page.md) instance
+- `pdfOutlines` - Keep PDF outlines/bookmarks(default `true`)
+- `urlOrigin`: Change the origin of the print url([How do I change the URL point to the localhost](https://github.com/condorheroblog/vuepress-plugin-export-pdf/issues/5))
+- `outlineContainerSelector`: Specify an outline container selector.
 
 ## PDF print style
 
@@ -115,16 +123,15 @@ create the `.vitepress/theme/index.ts` or `.vitepress/theme/index.js` file (the 
 
 ```ts
 // .vitepress/theme/index.ts
-import DefaultTheme from 'vitepress/theme'
+import DefaultTheme from "vitepress/theme";
 
 // custom CSS
-import './style/print.css'
+import "./style/print.css";
 
 export default {
-  // Extending the Default Theme
-  ...DefaultTheme,
-}
-
+	// Extending the Default Theme
+	...DefaultTheme,
+};
 ```
 
 create `/style/print.css`:
@@ -148,16 +155,39 @@ create `/style/print.css`:
 `.vitepress/vitepress-pdf.config.ts` add `routePatterns`:
 
 ```ts
-import { defineUserConfig } from 'vitepress-export-pdf'
+import { defineUserConfig } from "vitepress-export-pdf";
 
 export default defineUserConfig({
-  routePatterns: ['!/'],
-})
+	routePatterns: ["!/"],
+});
 ```
 
 > Note: `!` at the beginning of a pattern will negate the match
 
 Refer to [this example](./examples/vitepress-docs/) for more information，there is a very useful configuration file [vitepress-pdf.config.ts](./examples/vitepress-docs/docs/.vitepress/vitepress-pdf.config.ts)
+
+## Q&A
+
+Q: Is there any requirement for Node version to preserve PDF outline?
+
+A: Only if you use keep outline, the plugin uses `@condorhero/merge-pdfs`, and this package depends on `pyodide`, which requires Node version greater than `18.5.0`.
+
+Q: Is there anything users who use pnpm need to pay attention to?
+
+A: Only If you use the plugin's retain outline function(`pdfOutlines`), you need to add a little configuration to the project's `.npmrc` file.
+
+```bash
+# `.npmrc`
+public-hoist-pattern[]=pyodide
+```
+or
+
+```bash
+# `.npmrc`
+shamefully-hoist=true
+```
+
+[refer to this](https://github.com/condorheroblog/merge-pdfs#for-pnpm-users).
 
 ## Contributing
 

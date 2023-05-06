@@ -75,7 +75,7 @@ head:
 ```ts
 type HeadConfig =
   | [string, Record<string, string>]
-  | [string, Record<string, string>, string]
+  | [string, Record<string, string>, string];
 ```
 
 ## lastUpdated
@@ -153,7 +153,7 @@ interface Hero {
 
 interface HeroAction {
   // Color theme of the button. Defaults to `brand`.
-  theme?: 'brand' | 'alt'
+  theme?: "brand" | "alt"
 
   // Label of the button.
   text: string

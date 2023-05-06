@@ -49,16 +49,16 @@ On PNPM, add this in your `package.json`:
 
 ```json
 {
-  "pnpm": {
-    "peerDependencyRules": {
-      "ignoreMissing": [
-        "@algolia/client-search",
-        "@types/react",
-        "react",
-        "react-dom"
-      ]
-    }
-  }
+	"pnpm": {
+		"peerDependencyRules": {
+			"ignoreMissing": [
+				"@algolia/client-search",
+				"@types/react",
+				"react",
+				"react-dom"
+			]
+		}
+	}
 }
 ```
 
@@ -76,13 +76,13 @@ Add some scripts to `package.json`.
 
 ```json
 {
-  // ...
-  "scripts": {
-    "docs:dev": "vitepress dev docs",
-    "docs:build": "vitepress build docs",
-    "docs:serve": "vitepress serve docs"
-  }
-  // ...
+	// ...
+	"scripts": {
+		"docs:dev": "vitepress dev docs",
+		"docs:build": "vitepress build docs",
+		"docs:serve": "vitepress serve docs"
+	}
+	// ...
 }
 ```
 
