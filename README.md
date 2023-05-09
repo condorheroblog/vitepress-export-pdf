@@ -56,7 +56,7 @@ The package provides the `press-export-pdf` command with the following command l
   - `--outFile <outFile>`: Name of output file
   - `--outDir <outDir>`: Directory of output files
   - `--pdfOutlines <pdfOutlines>`: Keep PDF outlines/bookmarks
-  - `--urlOrigin <urlOrigin>`: Change the origin of the print url
+  - `--urlOrigin <urlOrigin>`: Change the origin of the print url(Option `displayHeaderFooter` of `pdfOptions` is true)
   - `--debug`: Enable debug mode
 - `info`: Display environment information
 - `--help`: Display help information
@@ -112,7 +112,7 @@ config options:
 - `puppeteerLaunchOptions` - [Puppeteer launch options object](https://github.com/puppeteer/puppeteer/blob/main/docs/api/puppeteer.puppeteerlaunchoptions.md)
 - `pdfOptions` - [Valid options to configure PDF generation via Page.pdf()](https://github.com/puppeteer/puppeteer/blob/main/docs/api/puppeteer.pdfoptions.md) (default `{ format: 'A4 }`)
 - `pdfOutlines` - Keep PDF outlines/bookmarks(default `true`)
-- `urlOrigin`: Change the origin of the print url([How do I change the URL point to the localhost](https://github.com/condorheroblog/vuepress-plugin-export-pdf/issues/5))
+- `urlOrigin`: Change the origin of the print url(Option `displayHeaderFooter` of `pdfOptions` is true) - ([How do I change the URL point to the localhost](https://github.com/condorheroblog/vuepress-plugin-export-pdf/issues/5))
 - `outlineContainerSelector`: Specify an outline container selector.
 
 ## PDF print style
@@ -171,23 +171,6 @@ Refer to [this example](./examples/vitepress-docs/) for more information，there
 Q: Is there any requirement for Node version to preserve PDF outline?
 
 A: Only if you use keep outline, the plugin uses `@condorhero/merge-pdfs`, and this package depends on `pyodide`, which requires Node version greater than `18.5.0`.
-
-Q: Is there anything users who use pnpm need to pay attention to?
-
-A: Only If you use the plugin's retain outline function(`pdfOutlines`), you need to add a little configuration to the project's `.npmrc` file.
-
-```bash
-# `.npmrc`
-public-hoist-pattern[]=pyodide
-```
-or
-
-```bash
-# `.npmrc`
-shamefully-hoist=true
-```
-
-[refer to this](https://github.com/condorheroblog/merge-pdfs#for-pnpm-users).
 
 ## Contributing
 

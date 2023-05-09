@@ -15,7 +15,7 @@ export function registerCommands(program: CAC) {
 		.option("--outFile <outFile>", "Name of output file")
 		.option("--outDir <outDir>", "Directory of output files")
 		.option("--pdfOutlines <pdfOutlines>", "Keep PDF outlines/bookmarks")
-		.option("--urlOrigin <urlOrigin>", "Change the origin of the print url")
+		.option("--urlOrigin <urlOrigin>", "Change the origin of the print url(Option displayHeaderFooter of pdfOptions is true)")
 		.option("--debug", "Enable debug mode")
 		.action(serverApp);
 
