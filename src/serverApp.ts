@@ -10,8 +10,7 @@ import type { UserConfig } from ".";
 
 const devDebug = debug("vitepress-export-pdf:dev-server");
 
-// export const PORT = 16762;
-export const PORT = 8080;
+export const PORT = 16762;
 export const HOST = "localhost";
 
 export const moduleRequire = createRequire(import.meta.url);

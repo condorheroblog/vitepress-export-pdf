@@ -33,17 +33,16 @@ const routeOrder = [
 ];
 
 const headerTemplate = `<div style="width: 100%; display: flex; justify-content: center; align-items: center; color: lightgray; border-bottom: solid lightgray 1px; padding-bottom: 10px; font-size: 10px;">
-  <span class="title"></span>
+	<span class="title"></span>
 </div>`;
 
 const footerTemplate = `<div style="width: 100%; display: flex; justify-content: center; align-items: center; color: lightgray; border-top: solid lightgray 1px; padding-top: 10px; font-size: 10px;">
-  <span class="pageNumber"></span> - <span class="totalPages"></span>
+	<p style="margin-left: 10px;" class="url"></p>
 </div>`;
 
 export default defineUserConfig({
 	outFile: "vitepress-example.pdf",
 	outDir: "pdf-vitepress",
-	pdfOutlines: false,
 	pdfOptions: {
 		format: "A4",
 		displayHeaderFooter: true,
@@ -56,6 +55,7 @@ export default defineUserConfig({
 			top: 70,
 		},
 	},
+	urlOrigin: "https://vitepress.dev/",
 	sorter: (pageA, pageB) => {
 		const aIndex = routeOrder.findIndex(route => route === pageA.path);
 		const bIndex = routeOrder.findIndex(route => route === pageB.path);
