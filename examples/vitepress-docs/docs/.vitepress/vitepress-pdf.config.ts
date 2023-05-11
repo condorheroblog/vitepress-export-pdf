@@ -32,12 +32,12 @@ const routeOrder = [
 	"/config/frontmatter-configs.html",
 ];
 
-const headerTemplate = `<div style="width: 100%; display: flex; justify-content: center; align-items: center; color: lightgray; border-bottom: solid lightgray 1px; padding-bottom: 10px; font-size: 10px;">
-	<span class="title"></span>
+const headerTemplate = `<div style="width: 100%; display: flex; justify-content: center; align-items: center; color: lightgray; border-bottom: solid lightgray 1px; font-size: 10px;">
+	<span style="margin-bottom: 13px;" class="title"></span>
 </div>`;
 
-const footerTemplate = `<div style="width: 100%; display: flex; justify-content: center; align-items: center; color: lightgray; border-top: solid lightgray 1px; padding-top: 10px; font-size: 10px;">
-	<p style="margin-left: 10px;" class="url"></p>
+const footerTemplate = `<div style="width: 100%; display: flex; justify-content: flex-start; align-items: center; color: lightgray; border-top: solid lightgray 1px; font-size: 10px;">
+	<span style="margin-top: 13px; margin-left: 10px;" class="url"></span>
 </div>`;
 
 export default defineUserConfig({
@@ -49,10 +49,10 @@ export default defineUserConfig({
 		headerTemplate,
 		footerTemplate,
 		margin: {
-			bottom: 70,
+			bottom: 50,
 			left: 25,
 			right: 25,
-			top: 70,
+			top: 50,
 		},
 	},
 	urlOrigin: "https://vitepress.dev/",
