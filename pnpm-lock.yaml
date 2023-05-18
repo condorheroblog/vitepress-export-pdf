@@ -54,6 +54,12 @@ importers:
         specifier: ^0.31.0
         version: registry.npmmirror.com/vitest@0.31.0
 
+  examples/pagination:
+    devDependencies:
+      pdf-lib:
+        specifier: ^1.17.1
+        version: registry.npmmirror.com/pdf-lib@1.17.1
+
   examples/vitepress-docs:
     devDependencies:
       vitepress:
@@ -1009,7 +1015,6 @@ packages:
     version: 1.0.0
     dependencies:
       pako: registry.npmmirror.com/pako@1.0.11
-    dev: false
 
   registry.npmmirror.com/@pdf-lib/upng@1.0.1:
     resolution: {integrity: sha512-dQK2FUMQtowVP00mtIksrlZhdFXQZPC+taih1q4CvPZ5vqdxR/LKBaFg0oAfzd1GlHZXXSPdQfzQnt+ViGvEIQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@pdf-lib/upng/-/upng-1.0.1.tgz}
@@ -1017,7 +1022,6 @@ packages:
     version: 1.0.1
     dependencies:
       pako: registry.npmmirror.com/pako@1.0.11
-    dev: false
 
   registry.npmmirror.com/@puppeteer/browsers@0.5.0(typescript@5.0.4):
     resolution: {integrity: sha512-Uw6oB7VvmPRLE4iKsjuOh8zgDabhNX67dzo8U/BB0f9527qx+4eeUs+korU98OhG5C4ubg7ufBgVi63XYwS6TQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@puppeteer/browsers/-/browsers-0.5.0.tgz}
@@ -4864,7 +4868,6 @@ packages:
     resolution: {integrity: sha512-4hLB8Py4zZce5s4yd9XzopqwVv/yGNhV1Bl8NTmCq1763HeK2+EwVTv+leGeL13Dnh2wfbqowVPXCIO0z4taYw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/pako/-/pako-1.0.11.tgz}
     name: pako
     version: 1.0.11
-    dev: false
 
   registry.npmmirror.com/pako@2.1.0:
     resolution: {integrity: sha512-w+eufiZ1WuJYgPXbV/PO3NCMEc3xqylkKHzp8bxp1uW4qaSNQUkwmLLEc3kKsfz8lpV1F8Ht3U1Cm+9Srog2ug==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/pako/-/pako-2.1.0.tgz}
@@ -4965,7 +4968,6 @@ packages:
       '@pdf-lib/upng': registry.npmmirror.com/@pdf-lib/upng@1.0.1
       pako: registry.npmmirror.com/pako@1.0.11
       tslib: registry.npmmirror.com/tslib@1.14.1
-    dev: false
 
   registry.npmmirror.com/pdfjs@2.4.7:
     resolution: {integrity: sha512-qGGZiQ7cz7nDgRgNSMm0qsZ4QPlAvZr+kWwB78hZzClojtfqGbGUT/gwzf8S2nniwvLMB56boBTTIppQohTJUA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/pdfjs/-/pdfjs-2.4.7.tgz}

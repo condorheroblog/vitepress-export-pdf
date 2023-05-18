@@ -1,0 +1,11 @@
+{
+	"name": "pagination",
+	"type": "module",
+	"private": true,
+	"scripts": {
+		"dev": "esno index.ts"
+	},
+	"devDependencies": {
+		"pdf-lib": "^1.17.1"
+	}
+}
