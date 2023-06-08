@@ -1,18 +1,20 @@
 # vitepress-export-pdf
 
 <p align="left">
-    <a href="https://www.npmjs.com/package/vitepress-export-pdf" target="__blank">
-        <img src="https://img.shields.io/npm/v/vitepress-export-pdf.svg?color=a1b858" alt="NPM version">
-    </a>
-    <a href="https://www.npmjs.com/package/vitepress-export-pdf" target="__blank">
-        <img alt="NPM Downloads" src="https://img.shields.io/npm/dm/vitepress-export-pdf.svg?color=50a36f">
-    </a>
-    <br />
+	<a href="https://www.npmjs.com/package/vitepress-export-pdf" target="__blank">
+		<img src="https://img.shields.io/npm/v/vitepress-export-pdf.svg?color=a1b858" alt="NPM version">
+	</a>
+	<a href="https://www.npmjs.com/package/vitepress-export-pdf" target="__blank">
+		<img alt="NPM Downloads" src="https://img.shields.io/npm/dm/vitepress-export-pdf.svg?color=50a36f">
+	</a>
+	<a href="https://github.com/condorheroblog/vitepress-export-pdf" target="__blank">
+		<img alt="GitHub stars" src="https://img.shields.io/github/stars/condorheroblog/vitepress-export-pdf?style=social">
+	</a>
 </p>
 
 `vitepress-export-pdf` allows you to export your sites to a PDF file.
 
-**Note: Because vitepress is still in alpha version**, the API may face changes, so this package is also released as alpha version.
+**Note: Because vitepress is still in beta version**, the API may face changes, so this package is also released as beta version.
 
 ## Related
 
@@ -41,10 +43,6 @@ Then run:
 npm run export-pdf
 ```
 
-## Demo
-
-A usable example of quick start [click here](./examples/vitepress-docs/).
-
 ## `press-export-pdf` Command Options
 
 The package provides the `press-export-pdf` command with the following command line options:
@@ -52,12 +50,12 @@ The package provides the `press-export-pdf` command with the following command l
 ![vitepress-export-pdf.png](./assets/vitepress-export-pdf.svg)
 
 - `export [sourceDir]`: Export your site to a PDF file
-  - `-c, --config <config>`: Set path to config file
-  - `--outFile <outFile>`: Name of output file
-  - `--outDir <outDir>`: Directory of output files
-  - `--pdfOutlines <pdfOutlines>`: Keep PDF outlines/bookmarks
-  - `--urlOrigin <urlOrigin>`: Change the origin of the print url(Option `displayHeaderFooter` of `pdfOptions` is true)
-  - `--debug`: Enable debug mode
+	- `-c, --config <config>`: Set path to config file
+	- `--outFile <outFile>`: Name of output file
+	- `--outDir <outDir>`: Directory of output files
+	- `--pdfOutlines <pdfOutlines>`: Keep PDF outlines/bookmarks([**Node >= 18.5.0**](https://github.com/condorheroblog/vitepress-export-pdf/tree/v1.0.0-alpha.3#qa))
+	- `--urlOrigin <urlOrigin>`: Change the origin of the print url(Option `displayHeaderFooter` of `pdfOptions` is true)
+	- `--debug`: Enable debug mode
 - `info`: Display environment information
 - `--help`: Display help information
 - `--version`: Display version information
@@ -110,12 +108,56 @@ config options:
 - `outDir` - Directory of output files (default `package.json` file exists in directory)
 - `routePatterns` - Specify the patterns of files you want to be exported. The patterns are relative to the source directory (default `["/**", "!/404.html"]`).Patterns to match Route path using [multimatch](https://github.com/sindresorhus/multimatch)
 - `puppeteerLaunchOptions` - [Puppeteer launch options object](https://github.com/puppeteer/puppeteer/blob/main/docs/api/puppeteer.puppeteerlaunchoptions.md)
-- `pdfOptions` - [Valid options to configure PDF generation via Page.pdf()](https://github.com/puppeteer/puppeteer/blob/main/docs/api/puppeteer.pdfoptions.md) (default `{ format: 'A4 }`)
+- `pdfOptions` - [Valid options to configure PDF generation via Page.pdf()](https://github.com/puppeteer/puppeteer/blob/main/docs/api/puppeteer.pdfoptions.md) (default `{ format: 'A4 }`), **`pageNumber` and `totalPages` of `headerTemplate` and `footerTemplate` cannot be used because of [this reason](https://github.com/condorheroblog/vitepress-export-pdf/issues/5)**
 - `pdfOutlines` - Keep PDF outlines/bookmarks(default `true`)
 - `urlOrigin`: Change the origin of the print url(Option `displayHeaderFooter` of `pdfOptions` is true) - ([How do I change the URL point to the localhost](https://github.com/condorheroblog/vuepress-plugin-export-pdf/issues/5))
 - `outlineContainerSelector`: Specify an outline container selector.
 
-## PDF print style
+## Examples
+
+A usable example of quick start [click here](./examples/vitepress-docs/).
+
+Refer to [this example](./examples/vitepress-docs/) for more information，there is a very useful configuration file [vitepress-pdf.config.ts](./examples/vitepress-docs/docs/.vitepress/vitepress-pdf.config.ts)
+
+### Order of PDF
+
+`console.log` all the routes in the sort function and assign them to the variable `routeOrder` as a value. You can adjust the order of printing in the array `routeOrder`.
+
+```ts
+import { defineUserConfig } from "vitepress-export-pdf";
+
+const routeOrder = [
+	"/index.html",
+	"/guide/what-is-vitepress.html",
+	"/guide/getting-started.html",
+	"/guide/configuration.html",
+	// ...
+];
+
+export default defineUserConfig({
+	sorter: (pageA, pageB) => {
+		const aIndex = routeOrder.findIndex(route => route === pageA.path);
+		const bIndex = routeOrder.findIndex(route => route === pageB.path);
+		return aIndex - bIndex;
+	},
+});
+```
+
+### Don't export homepage
+
+`.vitepress/vitepress-pdf.config.ts` add `routePatterns`:
+
+```ts
+import { defineUserConfig } from "vitepress-export-pdf";
+
+export default defineUserConfig({
+	routePatterns: ["!/"],
+});
+```
+
+> Note: `!` at the beginning of a pattern will negate the match
+
+### PDF print style
 
 Unlike VuePress, VitePress has no customization [global style](https://v2.vuepress.vuejs.org/reference/default-theme/styles.html)(ex VuePress2.x `.vuepress/styles/index.scss`) function, but we can customize themes to achieve this.
 
@@ -138,39 +180,15 @@ create `/style/print.css`:
 
 ```css
 @media print {
-  .VPNav,
-  .VPLocalNav,
-  .VPDocFooter {
-    display: none !important;
-  }
+	.VPNav,
+	.VPLocalNav,
+	.VPDocFooter {
+		display: none !important;
+	}
 }
 ```
 
 ![compare-print-style.png](./assets/compare-print-style.png)
-
-## Examples
-
-### Don't export homepage
-
-`.vitepress/vitepress-pdf.config.ts` add `routePatterns`:
-
-```ts
-import { defineUserConfig } from "vitepress-export-pdf";
-
-export default defineUserConfig({
-	routePatterns: ["!/"],
-});
-```
-
-> Note: `!` at the beginning of a pattern will negate the match
-
-Refer to [this example](./examples/vitepress-docs/) for more information，there is a very useful configuration file [vitepress-pdf.config.ts](./examples/vitepress-docs/docs/.vitepress/vitepress-pdf.config.ts)
-
-## Q&A
-
-Q: Is there any requirement for Node version to preserve PDF outline?
-
-A: Only if you use keep outline, the plugin uses `@condorhero/merge-pdfs`, and this package depends on `pyodide`, which requires Node version greater than `18.5.0`.
 
 ## Contributing
 
