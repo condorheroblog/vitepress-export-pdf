@@ -2,7 +2,7 @@
 	"name": "vitepress-export-pdf",
 	"type": "module",
 	"version": "1.0.0-alpha.3",
-	"packageManager": "pnpm@8.4.0",
+	"packageManager": "pnpm@8.6.6",
 	"description": "VitePress export PDF",
 	"author": "CondorHero",
 	"license": "MIT",
@@ -69,23 +69,23 @@
 		"vitepress": ">=1.0.0-alpha.35 <=1.x"
 	},
 	"dependencies": {
-		"@condorhero/vuepress-plugin-export-pdf-core": "^3.0.1",
+		"@condorhero/vuepress-plugin-export-pdf-core": "^3.0.2",
 		"debug": "^4.3.4",
 		"hash-sum": "^2.0.0"
 	},
 	"devDependencies": {
-		"@antfu/eslint-config-ts": "^0.38.6",
-		"@types/debug": "^4.1.7",
+		"@antfu/eslint-config-ts": "^0.39.6",
+		"@types/debug": "^4.1.8",
 		"@types/hash-sum": "^1.0.0",
-		"bumpp": "^9.1.0",
-		"eslint": "^8.40.0",
+		"bumpp": "^9.1.1",
+		"eslint": "^8.44.0",
 		"esno": "^0.16.3",
-		"fast-glob": "^3.2.12",
+		"fast-glob": "^3.3.0",
 		"husky": "^8.0.3",
-		"lint-staged": "^13.2.2",
-		"typescript": "^5.0.4",
+		"lint-staged": "^13.2.3",
+		"typescript": "^5.1.6",
 		"unbuild": "^1.2.1",
-		"vitepress": "^1.0.0-alpha.75",
-		"vitest": "^0.31.0"
+		"vitepress": "^1.0.0-beta.5",
+		"vitest": "^0.32.4"
 	}
 }
