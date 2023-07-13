@@ -39,7 +39,7 @@ export async function serverApp(dir = "docs", commandOptions: CommandOptions = {
 
 	// set default routePatterns
 	if (Array.isArray(userConfig.routePatterns))
-		userConfig.routePatterns = ["/**", "!/404.html", ...userConfig.routePatterns];
+		userConfig.routePatterns = [...userConfig.routePatterns];
 	else
 		userConfig.routePatterns = ["/**", "!/404.html"];
 
