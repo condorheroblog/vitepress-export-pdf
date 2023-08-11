@@ -143,6 +143,26 @@ export default defineUserConfig({
 });
 ```
 
+In order to avoid maintaining two routes, you can read the link fields specified by `Nav` and `Sidebar` in the vitepress configuration file by coding, and then sort them. The outline of the code is as follows:
+
+```ts
+import vitepressConfig from "./config";
+
+function extractLinksFromConfig(config: DefaultTheme.Config) {
+	const links: string[] = [];
+	// Some code logic
+	return links;
+}
+
+const links = extractLinksFromConfig(vitepressConfig.themeConfig!);
+const routeOrder = [
+	"/index.html",
+	...links,
+];
+```
+
+[The full code is here](https://github.com/condorheroblog/vitepress-export-pdf/blob/main/examples/vitepress-docs/docs/.vitepress/vitepress-pdf.config.ts)
+
 ### Don't export homepage
 
 `.vitepress/vitepress-pdf.config.ts` add `routePatterns`:
