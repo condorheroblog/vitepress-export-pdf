@@ -2,7 +2,7 @@
 	"name": "vitepress-export-pdf",
 	"type": "module",
 	"version": "1.0.0-beta.0",
-	"packageManager": "pnpm@8.6.6",
+	"packageManager": "pnpm@8.6.12",
 	"description": "VitePress export PDF",
 	"author": "CondorHero",
 	"license": "MIT",
@@ -74,18 +74,18 @@
 		"hash-sum": "^2.0.0"
 	},
 	"devDependencies": {
-		"@antfu/eslint-config-ts": "^0.39.6",
+		"@antfu/eslint-config-ts": "^0.40.2",
 		"@types/debug": "^4.1.8",
 		"@types/hash-sum": "^1.0.0",
 		"bumpp": "^9.1.1",
-		"eslint": "^8.44.0",
-		"esno": "^0.16.3",
-		"fast-glob": "^3.3.0",
+		"eslint": "^8.46.0",
+		"esno": "^0.17.0",
+		"fast-glob": "^3.3.1",
 		"husky": "^8.0.3",
 		"lint-staged": "^13.2.3",
 		"typescript": "^5.1.6",
 		"unbuild": "^1.2.1",
-		"vitepress": "^1.0.0-beta.5",
-		"vitest": "^0.32.4"
+		"vitepress": "^1.0.0-rc.4",
+		"vitest": "^0.34.1"
 	}
 }
