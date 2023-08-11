@@ -1,35 +1,31 @@
+import type { DefaultTheme } from "vitepress";
 import { defineUserConfig } from "vitepress-export-pdf";
 
+import userConfig from "./config";
+
+function extractLinksFromConfig(config: DefaultTheme.Config) {
+	const links: string[] = [];
+
+	function extractLinks(sidebar: DefaultTheme.SidebarItem[]) {
+		for (const item of sidebar) {
+			if (item.items)
+				extractLinks(item.items);
+
+			else if (item.link)
+				links.push(`${item.link}.html`);
+		}
+	}
+
+	for (const key in config.sidebar)
+		extractLinks(config.sidebar[key]);
+
+	return links;
+}
+
+const links = extractLinksFromConfig(userConfig.themeConfig!);
 const routeOrder = [
 	"/index.html",
-	"/guide/what-is-vitepress.html",
-	"/guide/getting-started.html",
-	"/guide/configuration.html",
-	"/guide/deploying.html",
-	"/guide/markdown.html",
-	"/guide/asset-handling.html",
-	"/guide/frontmatter.html",
-	"/guide/using-vue.html",
-	"/guide/api.html",
-	"/guide/theme-introduction.html",
-	"/guide/theme-nav.html",
-	"/guide/theme-sidebar.html",
-	"/guide/theme-prev-next-link.html",
-	"/guide/theme-edit-link.html",
-	"/guide/theme-last-updated.html",
-	"/guide/theme-layout.html",
-	"/guide/theme-home-page.html",
-	"/guide/theme-team-page.html",
-	"/guide/theme-footer.html",
-	"/guide/theme-search.html",
-	"/guide/theme-carbon-ads.html",
-	"/guide/migration-from-vuepress.html",
-	"/guide/migration-from-vitepress-0.html",
-
-	"/config/introduction.html",
-	"/config/app-configs.html",
-	"/config/theme-configs.html",
-	"/config/frontmatter-configs.html",
+	...links,
 ];
 
 const headerTemplate = `<div style="margin-top: -0.4cm; height: 70%; width: 100%; display: flex; justify-content: center; align-items: center; color: lightgray; border-bottom: solid lightgray 1px; font-size: 10px;">
