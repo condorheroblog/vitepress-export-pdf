@@ -1,91 +1,90 @@
 {
-	"name": "vitepress-export-pdf",
-	"type": "module",
-	"version": "1.0.0-beta.0",
-	"packageManager": "pnpm@8.6.12",
-	"description": "VitePress export PDF",
-	"author": "CondorHero",
-	"license": "MIT",
-	"homepage": "https://github.com/condorheroblog/vitepress-export-pdf#readme",
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/condorheroblog/vitepress-export-pdf.git"
-	},
-	"bugs": {
-		"url": "https://github.com/condorheroblog/vitepress-export-pdf/issues"
-	},
-	"keywords": [
-		"vitepress-plugin-export-pdf",
-		"vitepress-export-pdf",
-		"vitepress-pdf",
-		"vitepress"
-	],
-	"exports": {
-		".": {
-			"types": "./dist/index.d.ts",
-			"require": "./dist/index.cjs",
-			"import": "./dist/index.mjs"
-		}
-	},
-	"main": "dist/index.cjs",
-	"module": "dist/index.mjs",
-	"types": "dist/index.d.ts",
-	"typesVersions": {
-		"*": {
-			"*": [
-				"./dist/*",
-				"./dist/index.d.ts"
-			]
-		}
-	},
-	"bin": {
-		"press-export-pdf": "bin/press-export-pdf.mjs"
-	},
-	"files": [
-		"bin",
-		"dist"
-	],
-	"engines": {
-		"node": ">=14.6.0"
-	},
-	"scripts": {
-		"release": "bumpp -r && pnpm -r publish",
-		"prepublishOnly": "nr build",
-		"dev": "esno ./src/commands/press-export-pdf.ts export ./example/vitepress-docs",
-		"coverage": "vitest run --coverage",
-		"lint:fix": "eslint . --fix",
-		"lint": "eslint .",
-		"test": "vitest",
-		"build": "unbuild"
-	},
-	"workspaces": [
-		"examples/*"
-	],
-	"publishConfig": {
-		"access": "public",
-		"registry": "https://registry.npmjs.org"
-	},
-	"peerDependencies": {
-		"vitepress": ">=1.0.0-alpha.35 <=1.x"
-	},
-	"dependencies": {
-		"@condorhero/vuepress-plugin-export-pdf-core": "^3.0.2",
-		"debug": "^4.3.4",
-		"hash-sum": "^2.0.0"
-	},
-	"devDependencies": {
-		"@antfu/eslint-config-ts": "^0.40.2",
-		"@types/debug": "^4.1.8",
-		"@types/hash-sum": "^1.0.0",
-		"bumpp": "^9.1.1",
-		"eslint": "^8.46.0",
-		"esno": "^0.17.0",
-		"fast-glob": "^3.3.1",
-		"husky": "^8.0.3",
-		"lint-staged": "^13.2.3",
-		"typescript": "^5.1.6",
-		"unbuild": "^1.2.1",
-		"vitepress": "^1.0.0-rc.4",
-		"vitest": "^0.34.1"
-	}
+  "name": "vitepress-export-pdf",
+  "type": "module",
+  "version": "1.0.0-beta.0",
+  "packageManager": "pnpm@9.1.0",
+  "description": "VitePress export PDF",
+  "author": "CondorHero",
+  "license": "MIT",
+  "homepage": "https://github.com/condorheroblog/vitepress-export-pdf#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/condorheroblog/vitepress-export-pdf.git"
+  },
+  "bugs": {
+    "url": "https://github.com/condorheroblog/vitepress-export-pdf/issues"
+  },
+  "keywords": [
+    "vitepress-plugin-export-pdf",
+    "vitepress-export-pdf",
+    "vitepress-pdf",
+    "vitepress"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./dist/*",
+        "./dist/index.d.ts"
+      ]
+    }
+  },
+  "bin": {
+    "press-export-pdf": "bin/press-export-pdf.mjs"
+  },
+  "files": [
+    "bin",
+    "dist"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "release": "bumpp -r && pnpm -r publish",
+    "prepublishOnly": "nr build",
+    "dev": "esno ./src/commands/press-export-pdf.ts export ./example/vitepress-docs",
+    "coverage": "vitest run --coverage",
+    "lint:fix": "eslint . --fix",
+    "lint": "eslint .",
+    "test": "vitest",
+    "build": "unbuild"
+  },
+  "workspaces": [
+    "examples/*"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
+  "peerDependencies": {
+    "vitepress": ">=1.0.0-alpha.35"
+  },
+  "dependencies": {
+    "@condorhero/vuepress-plugin-export-pdf-core": "^3.0.3",
+    "debug": "^4.3.4",
+    "hash-sum": "^2.0.0"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^2.17.0",
+    "@types/debug": "^4.1.12",
+    "@types/hash-sum": "^1.0.2",
+    "bumpp": "^9.4.1",
+    "eslint": "^9.2.0",
+    "esno": "^4.7.0",
+    "fast-glob": "^3.3.2",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.2",
+    "typescript": "^5.4.5",
+    "unbuild": "^2.0.0",
+    "vitepress": "^1.1.4",
+    "vitest": "^1.6.0"
+  }
 }

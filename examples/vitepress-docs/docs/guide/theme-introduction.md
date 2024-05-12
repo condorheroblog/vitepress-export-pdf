@@ -51,21 +51,21 @@ The theme entry file should export the theme as its default export:
 
 ```js
 // .vitepress/theme/index.js
-import Layout from "./Layout.vue";
+import Layout from './Layout.vue'
 
 export default {
-	// root component to wrap each page
-	Layout,
+  // root component to wrap each page
+  Layout,
 
-	// this is a Vue 3 functional component
-	NotFound: () => "custom 404",
+  // this is a Vue 3 functional component
+  NotFound: () => 'custom 404',
 
-	enhanceApp({ app, router, siteData }) {
-		// app is the Vue 3 app instance from `createApp()`.
-		// router is VitePress' custom router. `siteData` is
-		// a `ref` of current site-level metadata.
-	}
-};
+  enhanceApp({ app, router, siteData }) {
+    // app is the Vue 3 app instance from `createApp()`.
+    // router is VitePress' custom router. `siteData` is
+    // a `ref` of current site-level metadata.
+  }
+}
 ```
 
 ...where the `Layout` component could look like this:
@@ -86,9 +86,9 @@ To distribute a theme, simply export the object in your package entry. To consum
 
 ```js
 // .vitepress/theme/index.js
-import Theme from "awesome-vitepress-theme";
+import Theme from 'awesome-vitepress-theme'
 
-export default Theme;
+export default Theme
 ```
 
 ## Extending the Default Theme
@@ -99,15 +99,15 @@ If you want to extend and customize the default theme, you can import it from `v
 
 ```js
 // .vitepress/theme/index.js
-import DefaultTheme from "vitepress/theme";
+import DefaultTheme from 'vitepress/theme'
 
 export default {
-	...DefaultTheme,
-	enhanceApp({ app }) {
-		// register global components
-		app.component("MyGlobalComponent", /* ... */);
-	}
-};
+  ...DefaultTheme,
+  enhanceApp({ app }) {
+    // register global components
+    app.component('MyGlobalComponent', /* ... */)
+  }
+}
 ```
 
 Since we are using Vite, you can also leverage Vite's [glob import feature](https://vitejs.dev/guide/features.html#glob-import) to auto register a directory of components.
@@ -118,10 +118,10 @@ The default theme CSS is customizable by overriding root level CSS variables:
 
 ```js
 // .vitepress/theme/index.js
-import DefaultTheme from "vitepress/theme";
-import "./custom.css";
+import DefaultTheme from 'vitepress/theme'
+import './custom.css'
 
-export default DefaultTheme;
+export default DefaultTheme
 ```
 
 ```css
@@ -140,19 +140,19 @@ The default theme's `<Layout/>` component has a few slots that can be used to in
 
 ```js
 // .vitepress/theme/index.js
-import DefaultTheme from "vitepress/theme";
-import MyLayout from "./MyLayout.vue";
+import DefaultTheme from 'vitepress/theme'
+import MyLayout from './MyLayout.vue'
 
 export default {
-	...DefaultTheme,
-	// override the Layout with a wrapper component that
-	// injects the slots
-	Layout: MyLayout
-};
+  ...DefaultTheme,
+  // override the Layout with a wrapper component that
+  // injects the slots
+  Layout: MyLayout
+}
 ```
 
 ```vue
-<!--.vitepress/theme/MyLayout.vue-->
+<!-- .vitepress/theme/MyLayout.vue -->
 <script setup>
 import DefaultTheme from 'vitepress/theme'
 
@@ -172,17 +172,17 @@ Or you could use render function as well.
 
 ```js
 // .vitepress/theme/index.js
-import DefaultTheme from "vitepress/theme";
-import MyComponent from "./MyComponent.vue";
+import DefaultTheme from 'vitepress/theme'
+import MyComponent from './MyComponent.vue'
 
 export default {
-	...DefaultTheme,
-	Layout() {
-		return h(DefaultTheme.Layout, null, {
-			"aside-outline-before": () => h(MyComponent)
-		});
-	}
-};
+  ...DefaultTheme,
+  Layout() {
+    return h(DefaultTheme.Layout, null, {
+      'aside-outline-before': () => h(MyComponent)
+    })
+  }
+}
 ```
 
 Full list of slots available in the default theme layout:

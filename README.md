@@ -1,20 +1,18 @@
 # vitepress-export-pdf
 
 <p align="left">
-	<a href="https://www.npmjs.com/package/vitepress-export-pdf" target="__blank">
-		<img src="https://img.shields.io/npm/v/vitepress-export-pdf.svg?color=a1b858" alt="NPM version">
-	</a>
-	<a href="https://www.npmjs.com/package/vitepress-export-pdf" target="__blank">
-		<img alt="NPM Downloads" src="https://img.shields.io/npm/dm/vitepress-export-pdf.svg?color=50a36f">
-	</a>
-	<a href="https://github.com/condorheroblog/vitepress-export-pdf" target="__blank">
-		<img alt="GitHub stars" src="https://img.shields.io/github/stars/condorheroblog/vitepress-export-pdf?style=social">
-	</a>
+  <a href="https://www.npmjs.com/package/vitepress-export-pdf" target="__blank">
+    <img src="https://img.shields.io/npm/v/vitepress-export-pdf.svg?color=a1b858" alt="NPM version">
+  </a>
+  <a href="https://www.npmjs.com/package/vitepress-export-pdf" target="__blank">
+    <img alt="NPM Downloads" src="https://img.shields.io/npm/dm/vitepress-export-pdf.svg?color=50a36f">
+  </a>
+  <a href="https://github.com/condorheroblog/vitepress-export-pdf" target="__blank">
+    <img alt="GitHub stars" src="https://img.shields.io/github/stars/condorheroblog/vitepress-export-pdf?style=social">
+  </a>
 </p>
 
 `vitepress-export-pdf` allows you to export your sites to a PDF file.
-
-**Note: Because vitepress is still in beta version**, the API may face changes, so this package is also released as beta version.
 
 ## Related
 
@@ -31,9 +29,9 @@ then add script to your `package.json`:
 
 ```json
 {
-	"scripts": {
-		"export-pdf": "press-export-pdf export [path/to/your/docs]"
-	}
+  "scripts": {
+    "export-pdf": "press-export-pdf export [path/to/your/docs]"
+  }
 }
 ```
 
@@ -47,15 +45,15 @@ npm run export-pdf
 
 The package provides the `press-export-pdf` command with the following command line options:
 
-![vitepress-export-pdf.png](./assets/vitepress-export-pdf.svg)
+![vitepress-export-pdf.png](https://github.com/condorheroblog/vitepress-export-pdf/raw/main/assets/vitepress-export-pdf.svg)
 
 - `export [sourceDir]`: Export your site to a PDF file
-	- `-c, --config <config>`: Set path to config file
-	- `--outFile <outFile>`: Name of output file
-	- `--outDir <outDir>`: Directory of output files
-	- `--pdfOutlines <pdfOutlines>`: Keep PDF outlines/bookmarks([**Node >= 18.5.0**](https://github.com/condorheroblog/vitepress-export-pdf/tree/v1.0.0-alpha.3#qa))
-	- `--urlOrigin <urlOrigin>`: Change the origin of the print url(Option `displayHeaderFooter` of `pdfOptions` is true)
-	- `--debug`: Enable debug mode
+  - `-c, --config <config>`: Set path to config file
+  - `--outFile <outFile>`: Name of output file
+  - `--outDir <outDir>`: Directory of output files
+  - `--pdfOutlines <pdfOutlines>`: Keep PDF outlines/bookmarks([**Node >= 18.5.0**](https://github.com/condorheroblog/vitepress-export-pdf/tree/v1.0.0-alpha.3#qa))
+  - `--urlOrigin <urlOrigin>`: Change the origin of the print url(Option `displayHeaderFooter` of `pdfOptions` is true)
+  - `--debug`: Enable debug mode
 - `info`: Display environment information
 - `--help`: Display help information
 - `--version`: Display version information
@@ -81,11 +79,11 @@ ex:
 
 ```ts
 // .vitepress/vitepress-pdf.config.ts
-import { defineUserConfig } from "vitepress-export-pdf";
+import { defineUserConfig } from 'vitepress-export-pdf'
 
 export default defineUserConfig({
-	// ...
-});
+  // ...
+})
 ```
 
 if you want to use JS files, **you can leverage your IDE's intellisense with jsdoc type hints**:
@@ -95,10 +93,10 @@ if you want to use JS files, **you can leverage your IDE's intellisense with jsd
  * @type {import('vitepress-export-pdf').UserConfig}
  */
 const config = {
-	// ...
-};
+  // ...
+}
 
-export default config;
+export default config
 ```
 
 config options:
@@ -115,50 +113,50 @@ config options:
 
 ## Examples
 
-A usable example of quick start [click here](./examples/vitepress-docs/).
+A usable example of quick start [click here](https://github.com/condorheroblog/vitepress-export-pdf/blob/main/examples/vitepress-docs).
 
-Refer to [this example](./examples/vitepress-docs/) for more information，there is a very useful configuration file [vitepress-pdf.config.ts](./examples/vitepress-docs/docs/.vitepress/vitepress-pdf.config.ts)
+Refer to [this example](https://github.com/condorheroblog/vitepress-export-pdf/blob/main/examples/vitepress-docs) for more information，there is a very useful configuration file [vitepress-pdf.config.ts](https://github.com/condorheroblog/vitepress-export-pdf/blob/main/examples/vitepress-docs/docs/.vitepress/vitepress-pdf.config.ts)
 
 ### Order of PDF
 
 `console.log` all the routes in the sort function and assign them to the variable `routeOrder` as a value. You can adjust the order of printing in the array `routeOrder`.
 
 ```ts
-import { defineUserConfig } from "vitepress-export-pdf";
+import { defineUserConfig } from 'vitepress-export-pdf'
 
 const routeOrder = [
-	"/index.html",
-	"/guide/what-is-vitepress.html",
-	"/guide/getting-started.html",
-	"/guide/configuration.html",
-	// ...
-];
+  '/index.html',
+  '/guide/what-is-vitepress.html',
+  '/guide/getting-started.html',
+  '/guide/configuration.html',
+  // ...
+]
 
 export default defineUserConfig({
-	sorter: (pageA, pageB) => {
-		const aIndex = routeOrder.findIndex(route => route === pageA.path);
-		const bIndex = routeOrder.findIndex(route => route === pageB.path);
-		return aIndex - bIndex;
-	},
-});
+  sorter: (pageA, pageB) => {
+    const aIndex = routeOrder.findIndex(route => route === pageA.path)
+    const bIndex = routeOrder.findIndex(route => route === pageB.path)
+    return aIndex - bIndex
+  },
+})
 ```
 
 In order to avoid maintaining two routes, you can read the link fields specified by `Nav` and `Sidebar` in the vitepress configuration file by coding, and then sort them. The outline of the code is as follows:
 
 ```ts
-import vitepressConfig from "./config";
+import vitepressConfig from './config'
 
 function extractLinksFromConfig(config: DefaultTheme.Config) {
-	const links: string[] = [];
-	// Some code logic
-	return links;
+  const links: string[] = []
+  // Some code logic
+  return links
 }
 
-const links = extractLinksFromConfig(vitepressConfig.themeConfig!);
+const links = extractLinksFromConfig(vitepressConfig.themeConfig!)
 const routeOrder = [
-	"/index.html",
-	...links,
-];
+  '/index.html',
+  ...links,
+]
 ```
 
 [The full code is here](https://github.com/condorheroblog/vitepress-export-pdf/blob/main/examples/vitepress-docs/docs/.vitepress/vitepress-pdf.config.ts)
@@ -168,11 +166,11 @@ const routeOrder = [
 `.vitepress/vitepress-pdf.config.ts` add `routePatterns`:
 
 ```ts
-import { defineUserConfig } from "vitepress-export-pdf";
+import { defineUserConfig } from 'vitepress-export-pdf'
 
 export default defineUserConfig({
-	routePatterns: ["!/"],
-});
+  routePatterns: ['!/'],
+})
 ```
 
 > Note: `!` at the beginning of a pattern will negate the match
@@ -185,30 +183,30 @@ create the `.vitepress/theme/index.ts` or `.vitepress/theme/index.js` file (the 
 
 ```ts
 // .vitepress/theme/index.ts
-import DefaultTheme from "vitepress/theme";
+import DefaultTheme from 'vitepress/theme'
 
 // custom CSS
-import "./style/print.css";
+import './style/print.css'
 
 export default {
-	// Extending the Default Theme
-	...DefaultTheme,
-};
+  // Extending the Default Theme
+  ...DefaultTheme,
+}
 ```
 
 create `/style/print.css`:
 
 ```css
 @media print {
-	.VPNav,
-	.VPLocalNav,
-	.VPDocFooter {
-		display: none !important;
-	}
+  .VPNav,
+  .VPLocalNav,
+  .VPDocFooter {
+    display: none !important;
+  }
 }
 ```
 
-![compare-print-style.png](./assets/compare-print-style.png)
+![compare-print-style.png](https://github.com/condorheroblog/vitepress-export-pdf/blob/main/assets/compare-print-style.png)
 
 ## Contributing
 

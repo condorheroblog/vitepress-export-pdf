@@ -1,1 +1,1 @@
-"*.{ts,md,html,json,js}": "eslint --fix"
+'*': eslint --fix

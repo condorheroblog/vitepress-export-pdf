@@ -8,10 +8,10 @@ The following guides are based on some shared assumptions:
 
   ```json
   {
-  	"scripts": {
-  		"docs:build": "vitepress build docs",
-  		"docs:serve": "vitepress serve docs"
-  	}
+    "scripts": {
+      "docs:build": "vitepress build docs",
+      "docs:serve": "vitepress serve docs"
+    }
   }
   ```
 
@@ -43,9 +43,9 @@ If your site is to be served at a subdirectory (`https://example.com/subdir/`), 
 
   ```json
   {
-  	"scripts": {
-  		"docs:serve": "vitepress serve docs --port 8080"
-  	}
+    "scripts": {
+      "docs:serve": "vitepress serve docs --port 8080"
+    }
   }
   ```
 
@@ -148,10 +148,10 @@ Don't enable options like _Auto Minify_ for HTML code. It will remove comments f
 
    ```json
    {
-   	"hosting": {
-   		"public": "docs/.vitepress/dist",
-   		"ignore": []
-   	}
+     "hosting": {
+       "public": "docs/.vitepress/dist",
+       "ignore": []
+     }
    }
    ```
 
@@ -159,9 +159,9 @@ Don't enable options like _Auto Minify_ for HTML code. It will remove comments f
 
    ```json
    {
-   	"projects": {
-   		"default": "<YOUR_FIREBASE_ID>"
-   	}
+     "projects": {
+       "default": "<YOUR_FIREBASE_ID>"
+     }
    }
    ```
 
@@ -187,7 +187,7 @@ Don't enable options like _Auto Minify_ for HTML code. It will remove comments f
 
    ```json
    {
-   	"root": "docs/.vitepress/dist"
+     "root": "docs/.vitepress/dist"
    }
    ```
 

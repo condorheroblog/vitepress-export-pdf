@@ -44,12 +44,12 @@ In this case it is recommended to wrap the path with the [`withBase` helper](./a
 
 ```vue
 <script setup>
-import { withBase, useData } from 'vitepress'
+import { useData, withBase } from 'vitepress'
 
 const { theme } = useData()
 </script>
 
 <template>
-  <img :src="withBase(theme.logoPath)" />
+  <img :src="withBase(theme.logoPath)">
 </template>
 ```

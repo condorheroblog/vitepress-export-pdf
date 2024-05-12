@@ -1,2 +1,1 @@
-export * from "../index";
-export * from "./press-export-pdf";
+export * from './press-export-pdf'
